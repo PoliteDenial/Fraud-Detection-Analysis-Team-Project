@@ -11,6 +11,7 @@ library(tidyverse)
 library(knitr)
 library(tinytex)
 library(corrplot)
+library(ggcorrplot)
 
 knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_chunk$set(message = FALSE)
@@ -58,11 +59,13 @@ identity = read.csv("/Users/zain/Desktop/School/Reg_Proj/ieee-fraud-detection/tr
 
 big_data = merge(x = tran_data, y = identity, by = "TransactionID", all.x = TRUE)
 
-corrplot(cor(big_data))
+big_data_only_numeric = big_data[, sapply(big_data, is.numeric)]
+
+
 ```
 
 
 
 ```{r}
-tran_data
+ggcorrplot(cor(big_data_only_numeric))
 ```
