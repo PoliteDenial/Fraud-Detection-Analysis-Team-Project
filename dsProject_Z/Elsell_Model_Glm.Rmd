@@ -1,0 +1,37 @@
+---
+title: "Super_Neat_Algo"
+author: "Zain Elsell"
+date: '2023-04-28'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyverse)
+```
+
+
+Do Forward and backwards stepwise as a model tonight,
+try using glm as a linear model after using feature wiz for model slection and fit with that, 
+
+```{r}
+path = "/Users/zain/Desktop/School/Reg_Proj/Regression_proj/dsProject_Z/Master.csv"
+idf = read.csv(path) 
+```
+```{r}
+
+# Identify the index of the "isFraud" variable
+isFraud_index <- which(names(idf) == "isFraud")
+
+# Remove any categorical variables with only one level
+idf <- idf[, sapply(idf, function(x) length(unique(x))) > 1]
+
+# Move the "isFraud" variable to the end of the data frame
+idf <- idf[, c(1:(isFraud_index - 1), (isFraud_index + 1):ncol(idf), isFraud_index)]
+
+# Fit the logistic regression model
+m1 <- glm(isFraud ~ ., data = idf, family = "binomial")
+```
+
+
