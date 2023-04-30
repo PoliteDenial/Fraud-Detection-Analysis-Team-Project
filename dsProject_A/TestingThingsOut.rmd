@@ -1,0 +1,38 @@
+```{r}
+library(dplyr)
+library(tinytex)
+library(bestglm)
+library(caret)
+
+library(randomForest)
+```
+
+```{r}
+
+# Load the dataset
+data <- read_csv("~/GitHub/Regression_proj/dsProject_A/Data/MasterTrainSetImputed.csv")
+
+# Split the dataset into training and testing sets
+set.seed(123)
+trainIndex <- sample(1:nrow(data), 0.8*nrow(data))
+training <- data[trainIndex, ]
+testing <- data[-trainIndex, ]
+
+# Train the random forest model
+rf <- randomForest(isFraud ~ ., data = training, ntree = 1000, importance = TRUE)
+
+# Get the feature importance values
+importance <- importance(rf)
+
+# Sort the importance values in descending order
+sorted_importance <- sort(importance[, 3], decreasing = TRUE)
+
+# Get the names of the top 15 features
+top_15_features <- names(sorted_importance)[1:15]
+
+# Print the top 15 features
+print(top_15_features)
+
+
+```
+
