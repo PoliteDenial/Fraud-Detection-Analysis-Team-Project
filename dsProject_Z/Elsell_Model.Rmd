@@ -1,0 +1,20 @@
+
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(knitr)
+library(tinytex)
+library(bestglm)
+library(glmnet)
+
+```
+
+```{r}
+df = read.csv("C://Users//zaine//OneDrive//Desktop//School//STAT//Reg_Proj//Regression_proj//dsProject//train_sample.csv")
+ #head(df)
+
+```
+
+```{r}
+model = glm(isFraud~., data= df)
+```
