@@ -3,15 +3,14 @@ library(dplyr)
 library(tinytex)
 library(bestglm)
 library(caret)
-
 library(randomForest)
+library(tidyverse)
 ```
 
 ```{r}
-
 # Load the dataset
-data <- read_csv("~/GitHub/Regression_proj/dsProject_A/Data/MasterTrainSetImputed.csv")
-
+#data <- read_csv("~/GitHub/Regression_proj/dsProject_A/Data/MasterTrainSetImputed.csv")
+data <- read_csv("C:/Users/zaine/Downloads/MasterTrainSetImputed.csv")
 # Split the dataset into training and testing sets
 set.seed(123)
 trainIndex <- sample(1:nrow(data), 0.8*nrow(data))
